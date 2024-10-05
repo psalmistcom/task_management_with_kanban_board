@@ -1,5 +1,7 @@
 <?php
 
+use App\Enum\PriorityEnum;
+use App\Enum\StatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +15,16 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->longText('description')->nullable();
+            $table->timestamp('due_date')->nullable();
+            $table->enum('status', [
+                StatusEnum::COMPLETED->value,
+                StatusEnum::IN_PROGRESS->value,
+                StatusEnum::PENDING->value,
+            ])->default(StatusEnum::PENDING->value);
+            $table->foreignId('created_by')->constrained('users');
+            $table->foreignId('updated_by')->constrained('users');
             $table->timestamps();
         });
     }
