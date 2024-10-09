@@ -57,7 +57,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                     </h2>
                     <Link
                         href={route("user.create")}
-                        className="flex justify-between gap-1 bg-orange-700 px-3 py-1 text-white rounded shadow transition-all hover:bg-orange-600 "
+                        className="flex text-sm items-center justify-between gap-1 bg-orange-700 px-3 py-1 text-white rounded shadow transition-all hover:bg-orange-600 "
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -134,6 +134,40 @@ export default function Index({ auth, users, queryParams = null, success }) {
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900 dark:text-gray-100">
                             <div className="overflow-auto">
+                                <div className="flex justify-between mb-6">
+                                    <div>
+                                        <TextInput
+                                            className="w-full"
+                                            defaultValue={queryParams.name}
+                                            placeholder="search user name"
+                                            onBlur={(e) =>
+                                                searchFieldChanged(
+                                                    "name",
+                                                    e.target.value
+                                                )
+                                            }
+                                            onKeyPress={(e) =>
+                                                onKeyPress("name", e)
+                                            }
+                                        />
+                                    </div>
+                                    <div>
+                                        <TextInput
+                                            className="w-full"
+                                            defaultValue={queryParams.email}
+                                            placeholder="search user email"
+                                            onBlur={(e) =>
+                                                searchFieldChanged(
+                                                    "email",
+                                                    e.target.value
+                                                )
+                                            }
+                                            onKeyPress={(e) =>
+                                                onKeyPress("email", e)
+                                            }
+                                        />
+                                    </div>
+                                </div>
                                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
                                         <tr className="text-nowrap">
@@ -192,49 +226,7 @@ export default function Index({ auth, users, queryParams = null, success }) {
                                             </th>
                                         </tr>
                                     </thead>
-                                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
-                                        <tr className="text-nowrap">
-                                            <th className="px-3 py-3"></th>
-                                            <th className="px-3 py-3"></th>
-                                            <th className="px-3 py-3">
-                                                <TextInput
-                                                    className="w-full"
-                                                    defaultValue={
-                                                        queryParams.name
-                                                    }
-                                                    placeholder="search user name"
-                                                    onBlur={(e) =>
-                                                        searchFieldChanged(
-                                                            "name",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    onKeyPress={(e) =>
-                                                        onKeyPress("name", e)
-                                                    }
-                                                />
-                                            </th>
-                                            <th className="px-3 py-3">
-                                                <TextInput
-                                                    className="w-full"
-                                                    defaultValue={
-                                                        queryParams.email
-                                                    }
-                                                    placeholder="search user email"
-                                                    onBlur={(e) =>
-                                                        searchFieldChanged(
-                                                            "email",
-                                                            e.target.value
-                                                        )
-                                                    }
-                                                    onKeyPress={(e) =>
-                                                        onKeyPress("email", e)
-                                                    }
-                                                />
-                                            </th>
-                                            <th className="px-3 py-3 text-right"></th>
-                                        </tr>
-                                    </thead>
+
                                     <tbody className="">
                                         {users.data.map((user) => (
                                             <tr
