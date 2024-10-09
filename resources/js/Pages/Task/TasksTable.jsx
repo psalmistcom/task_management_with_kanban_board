@@ -98,6 +98,34 @@ export default function TasksTable({
                 </div>
             )}
             <div className="overflow-auto">
+                <div className="flex justify-between mb-6">
+                    <div>
+                        <TextInput
+                            className="w-full"
+                            defaultValue={queryParams.name}
+                            placeholder="search task name"
+                            onBlur={(e) =>
+                                searchFieldChanged("name", e.target.value)
+                            }
+                            onKeyPress={(e) => onKeyPress("name", e)}
+                        />
+                    </div>
+                    <div>
+                        {" "}
+                        <SelectInput
+                            defaultValue={queryParams.status}
+                            className="w-full"
+                            onChange={(e) =>
+                                searchFieldChanged("status", e.target.value)
+                            }
+                        >
+                            <option value="">Select Status</option>
+                            <option value="completed">Completed</option>
+                            <option value="in_progress">In progress</option>
+                            <option value="pending">Pending</option>
+                        </SelectInput>
+                    </div>
+                </div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
                         <tr className="text-nowrap">
@@ -161,52 +189,7 @@ export default function TasksTable({
                             <th className="px-3 py-3 text-right">Actions</th>
                         </tr>
                     </thead>
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 border-b-2 border-gray-500">
-                        <tr className="text-nowrap">
-                            <th className="px-3 py-3"></th>
-                            <th className="px-3 py-3"></th>
-                            {!hideProjectColumn && (
-                                <th className="px-3 py-3"></th>
-                            )}
-                            <th className="px-3 py-3">
-                                <TextInput
-                                    className="w-full"
-                                    defaultValue={queryParams.name}
-                                    placeholder="search task name"
-                                    onBlur={(e) =>
-                                        searchFieldChanged(
-                                            "name",
-                                            e.target.value
-                                        )
-                                    }
-                                    onKeyPress={(e) => onKeyPress("name", e)}
-                                />
-                            </th>
-                            <th className="px-3 py-3">
-                                <SelectInput
-                                    defaultValue={queryParams.status}
-                                    className="w-full"
-                                    onChange={(e) =>
-                                        searchFieldChanged(
-                                            "status",
-                                            e.target.value
-                                        )
-                                    }
-                                >
-                                    <option value="">Select Status</option>
-                                    <option value="completed">Completed</option>
-                                    <option value="in_progress">
-                                        In progress
-                                    </option>
-                                    <option value="pending">Pending</option>
-                                </SelectInput>
-                            </th>
-                            <th className="px-3 py-3"></th>
-                            <th className="px-3 py-3"></th>
-                            <th className="px-3 py-3"></th>
-                            <th className="px-3 py-3 text-right"></th>
-                        </tr>
-                    </thead>
+
                     <tbody className="">
                         {tasks.data.map((task) => (
                             <tr

@@ -13,7 +13,7 @@ export default function Index({ auth, tasks, queryParams, success }) {
                     </h2>
                     <Link
                         href={route("task.create")}
-                        className="py-2 flex text-sm justify-between items-center gap-1 bg-orange-700 px-4 text-white rounded shadow transition-all hover:bg-orange-600 "
+                        className="py-3 flex justify-between gap-1 bg-orange-700 px-4 text-white rounded shadow transition-all hover:bg-orange-600 "
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
